@@ -1,6 +1,6 @@
 # AI Research Toolkit
 
-14 Claude skills that turn AI into your UX research assistant.
+17 Claude skills that turn AI into your UX research assistant.
 
 ## What's Inside
 
@@ -18,6 +18,9 @@ These process transcripts, notes, and findings you hand them. No account or inte
 | **screener-builder** | Creates screening surveys with qualification logic, scoring, and attention checks |
 | **affinity-mapper** | Groups observations into meaningful clusters with named themes and relationships |
 | **research-brief-writer** | Translates business questions into complete research plans with methodology recommendations |
+| **survey-designer** | Designs research-quality surveys with validated questions, response options, and strategic rationale |
+| **jtbd-interview-guide** | Generates a JTBD moderation guide using the Bob Moesta timeline interview method |
+| **jtbd-analyzer** | Extracts Jobs-to-Be-Done insights from transcripts — four forces, switching triggers, struggling moments |
 
 ### Great Question MCP skills
 
@@ -55,15 +58,15 @@ These act directly inside your Great Question account — creating studies, recr
 
 These skills chain together across a full research project.
 
-**Planning:** research-brief-writer → discussion-guide-builder → screener-builder
+**Planning:** research-brief-writer → discussion-guide-builder (or jtbd-interview-guide) → screener-builder (or survey-designer)
 
-**Analysis:** transcript-cleaner → insight-tagger → affinity-mapper → research-synthesizer
+**Analysis:** transcript-cleaner → insight-tagger → affinity-mapper → research-synthesizer (or jtbd-analyzer)
 
 **Communication:** stakeholder-readout-generator
 
 **Run it in Great Question (requires the MCP):** panel-hygiene-audit → candidate-recruiter → interview-study-builder *or* unmoderated-test-builder → study-email-writer → stakeholder-readout-mcp
 
-You don't need all 14 on every project. Start with the one that targets your biggest bottleneck.
+You don't need all 17 on every project. Start with the one that targets your biggest bottleneck.
 
 ## Customization
 
