@@ -42,7 +42,7 @@ These act directly inside your Great Question account — creating studies, recr
 | **study-email-writer** | Drafts and refines the participant-facing emails on a study with your voice, disclosures, and incentive rules; never sends without confirmation |
 | **candidate-recruiter** | Finds, filters, and shortlists candidates and sends screener invitations, applying your recruitment rules; confirms before sending |
 | **stakeholder-readout-mcp** | Pulls findings, highlights, and quotes from one or more studies and drafts a stakeholder readout in your team's format |
-| **panel-hygiene-audit** | Read-only audit of your candidate panel for over-recruitment, thin segments, and cooldown violations, with recommended remediation |
+| **panel-hygiene-audit** | Read-only audit of your candidate panel for over-recruitment, thin segments, and cooldown violations, plus participation and per-segment utilisation, with recommended remediation |
 
 ## How to Install
 

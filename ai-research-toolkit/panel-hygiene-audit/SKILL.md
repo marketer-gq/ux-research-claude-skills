@@ -1,15 +1,21 @@
 ---
 name: panel-hygiene-audit
-description: Audit your Great Question candidate panel for over-recruitment, thin segments, and cooldown violations, then propose remediation. Read-only — it reports and recommends but never modifies candidates. Use before a recruitment-heavy study or as a regular panel health check. Requires the Great Question MCP integration to be connected.
+description: Audit your Great Question candidate panel for over-recruitment, thin segments and cooldown violations, report participation and utilisation by segment, and propose remediation. Read-only — it reports and recommends but never modifies candidates. Use before a recruitment-heavy study, as a regular panel health check, or when asked who your most active, best-rated or longest-inactive participants are. Requires the Great Question MCP integration to be connected.
 owner: Great Question
-version: 0.1
-last_reviewed: 2026-06-10
-tested_against: MCP tools as of 2026-06-10
+version: 0.2
+last_reviewed: 2026-09-24
+tested_against: MCP tools as of 2026-09-24
 license: MIT
 ---
 
 # Panel Hygiene Audit
 Run a structured read of your candidate panel: who's been over-recruited, which segments are running thin, which candidates are inside their cooldown window, and where the agent would recommend recruiting from next. This skill audits and reports. It doesn't shortlist, invite, or modify candidates; that's the recruitment skill's job.
+
+The skill has two modes over the same data.
+
+**Health audit** — the original mode. Is the panel in a state that can support the studies we want to run?
+
+**Participation report** — who is actually carrying the panel. Most frequent participants, best rated, longest inactive, and utilisation by segment. Health asks whether the panel is sustainable; participation asks who is doing the work and which audiences are under- or over-used. Run either alone, or both together for a full picture.
 ## How to customize
 This template ships with sensible defaults. Most of the value is in the `{{placeholders}}` in **Your rules**, which encode your team's panel-health thresholds and policy. The **How this works with Great Question** section is the orchestration logic; change it only when GQ's workflow itself changes, not as a way of expressing policy. The **External-system hooks** section is empty by default. Add your team's integrations there.
 For the recruitment workflow itself (shortlist, send invitations), see the recruitment skill. This skill informs that decision but doesn't make it.
@@ -39,6 +45,16 @@ migrates to account config when that layer exists.
   <!-- For example: "Always include our 'enterprise customers' and 'high-engagement panel' segments because they're load-bearing for most studies." -->
 - **Segments to always exclude:** `{{never_audit_segments}}`
   <!-- For example: "Internal employees, opted-out candidates, and the 'do not recruit' list." -->
+### Participation reporting
+- **Champion threshold:** `{{champion_threshold}}`
+  <!-- For example: "3 or more completed sessions in the past 12 months with a mean rating at or above 4." Defines who gets surfaced for recognition. Distinct from over-recruitment, which counts the same participation and reads it as a risk — the two thresholds should be set together so a champion isn't automatically also a warning. -->
+- **Inactivity threshold:** `{{inactivity_threshold_days}}`
+  <!-- For example: 270. Candidates with no participation in this long are surfaced as dormant. Set it longer than the cooldown period or the report is just a list of everyone who recently took part. -->
+- **Rating source and minimum sessions:** `{{rating_rule}}`
+  <!-- For example: "Use the moderator's post-session rating. Report a mean only for candidates with at least 2 rated sessions; below that, show the individual ratings rather than an average." -->
+- **Utilisation target per segment:** `{{utilisation_target}}`
+  <!-- For example: "Between 15% and 40% of a segment's contactable candidates should have participated in the past 12 months. Below 15% the segment is being maintained and not used; above 40% it is carrying more than its share and will burn out." -->
+
 ### Remediation framing
 - **What "healthy" looks like in the report:** `{{healthy_definition}}`
   <!-- For example: "A segment is healthy when it has enough contactable, not-on-cooldown candidates to support 3 months of normal recruitment volume." -->
@@ -81,8 +97,24 @@ For each candidate, determine:
 For each segment, aggregate:
 - Total candidates, contactable candidates, candidates not on cooldown, healthy candidates (contactable + not on cooldown + not over-recruited + not engagement-decayed).
 - Compare against the **Your rules** segment health threshold.
+### 4b. Build the participation view (participation report mode)
+Run this when the researcher asked who's most active, best rated, longest inactive, or how heavily a segment is being used. It reads the same data step 3 already pulled; it does not need a second pass.
+For each candidate in scope, derive:
+- Completed sessions in the lookback window, and lifetime.
+- Mean rating, per the **Your rules** rating rule. Respect the minimum-sessions rule; a single 5-star rating is not a mean.
+- Days since last participation.
+- Declines and no-shows, so a high session count isn't read as engagement when most invitations were refused.
+For each segment, derive utilisation: the share of contactable candidates with at least one completed session in the lookback window, against the **Your rules** utilisation target.
+End of step 4b: three ranked lists — champions, dormant, and most-declined — plus a utilisation figure per segment.
+### 4c. Reconcile participation against health
+The two modes can disagree about the same person, and the disagreement is the useful part. A candidate who is a champion by the participation rule and over-recruited by the health rule is both: the panel is leaning on them, and that is a risk rather than a success.
+Surface those candidates explicitly in a single list rather than letting them appear as a champion in one section and a warning in another. Name the tension: recognise them, and stop inviting them for a while.
 ### 5. Draft the report
-Apply the **Your rules** concern-phrasing rule. The report has three parts:
+Apply the **Your rules** concern-phrasing rule.
+
+In participation report mode, add three sections after the health sections: **champions** (with their session counts and ratings), **dormant** (with days since last participation), and **utilisation by segment** against the target. Then the reconciled list from step 4c — candidates who are both a champion and a risk.
+
+The health report has three parts:
 - **Snapshot:** what's healthy, what's concerning, what's critical. One-line per segment with the headline number.
 - **Detail per segment:** for each segment, the breakdown of total / contactable / not-on-cooldown / healthy. Flag the candidates contributing most to over-recruitment or engagement decay so the researcher can investigate individually if needed.
 - **Recommendations:** for each concerning or critical segment, one or two recommended actions from the **Your rules** recommended-action-types list. Don't pad. If a segment is healthy, don't invent a recommendation.
@@ -101,6 +133,13 @@ them at runtime. Edit this list when GQ changes a workflow constraint.
 - **Segments are read-only via MCP today.** The agent can list, get, and use segments as filters, but can't create or modify segment definitions through this skill. If a recommendation calls for splitting a segment into sub-segments, the recommendation is for the researcher to do that work in the GQ UI; the agent can't.
 - **Large segments need paginated reads.** The candidate-search and list tools paginate. For segments with hundreds of candidates, the audit may take multiple calls. Surface the pagination state if it affects how the audit completes; don't silently truncate at the first page.
 - **Server-side filters (contactability, restriction, eligibility) are inherited by reads.** The agent's view of a segment is already filtered to what the caller can access. If a segment appears smaller than the researcher expects, restriction may be in play; mention that as a possible explanation rather than reporting a misleading count.
+- **A champion and an over-recruited candidate are often the same person.** Report them once, in one place, with both facts attached. Splitting them across a "recognise these people" list and a "these people are at risk" list produces two contradictory recommendations from one dataset.
+- **Don't average a rating from one session.** Apply the **Your rules** minimum-sessions rule. A mean of one number looks like evidence and isn't.
+- **A high session count with a high decline count is not engagement.** Report declines and no-shows next to participation, or the most-invited candidate looks like the most willing one.
+- **Utilisation is a segment property, not a candidate one.** A segment at 8% utilisation is being maintained and not used, which is a different problem from a thin segment and has a different fix — use it or stop maintaining it.
+- **What the candidate record gives you, verified against the live MCP on 24 Sep 2026.** Custom attributes sit under `attributes.extra`, with case-sensitive names (`Role`, not `role`). `last_contacted_at` is a timestamp on the record. `health_status` is an object of flags — `unresponsive` and `no-showed` were seen set to `true` — and is empty for most candidates. Use those flags for engagement decay rather than re-deriving them from invitation history where they exist. `list_candidates` pages at 20 per call with `meta.pages`, and `page` must be an integer.
+- **`average_rating` cannot enforce the minimum-sessions rule on its own.** It arrives as a string (`"4.5"`), is `null` for unrated candidates, and carries no count of the sessions behind it. A `"5.0"` from one session and a `"5.0"` from six look identical. Where the rating rule in **Your rules** sets a minimum, get the session count from participation history. If you can't, show the rating as unweighted and say so. Do not present it as a mean that meets the rule.
+- **The tool schemas are empty.** Great Question MCP tools advertise no parameters. When an argument name is unknown, the server names it in its reply (`Missing required arguments: <name>`), and a call rejected that way has no effect.
 - **Don't recommend over-contacting cooldown candidates.** No matter how short a segment is, the cooldown rule from **Your rules** is policy, not a suggestion. The remediation options are broaden, grow, pause, or split, not "recruit through the cooldown."
 ## External-system hooks
 <!--
@@ -134,4 +173,5 @@ The agent:
 7. Hands back the report with the four segment summaries, the recommendations, a flagged list of 6 candidates contributing disproportionately to over-recruitment across the audited segments, and a pointer to the recruitment skill for action.
 Time elapsed: a couple of minutes for a focused audit; longer for a full panel scan. The value is consistency: the same thresholds applied every time, the same recommendation framing, no editorializing beyond the numbers.
 ## Changelog
+- **0.2 (2026-09-24):** Added participation report mode — champions, dormant candidates, decline rates and per-segment utilisation — over the same read the health audit already performs, plus step 4c reconciling the two views where they disagree about the same candidate. Covers the participation-report and panel-utilisation asks from the ServiceNow ROIS log (SK-04, SK-18).
 - **0.1 (2026-06-10):** Initial library template version. Read-only audit workflow. Covers segment-level and candidate-level health checks against **Your rules** thresholds. Hands off to the recruitment skill for action.

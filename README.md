@@ -65,7 +65,7 @@ These act on your real data — creating studies, recruiting, drafting participa
 | [candidate-recruiter](ai-research-toolkit/candidate-recruiter) | Screens your panel against the criteria on a study you have already built, then gets the people who qualify invited |
 | [study-email-writer](ai-research-toolkit/study-email-writer) | Drafts the invitations, reminders and follow-ups a study needs, in your voice and with your disclosure rules |
 | [stakeholder-readout-mcp](ai-research-toolkit/stakeholder-readout-mcp) | Builds a readout from finished studies in your repo, with the real session highlights behind every finding |
-| [panel-hygiene-audit](ai-research-toolkit/panel-hygiene-audit) | Read-only audit of your panel for over-recruitment, thin segments and cooldown violations, with recommended remediation |
+| [panel-hygiene-audit](ai-research-toolkit/panel-hygiene-audit) | Read-only audit of your panel for over-recruitment, thin segments and cooldown violations, plus who is doing most of the participating and how heavily each segment is used, with recommended remediation |
 
 ## How they chain
 

@@ -2,9 +2,9 @@
 name: candidate-recruiter
 description: Find the right candidates for a Great Question study, filter for fit, shortlist them, and send screener invitations, applying your org's recruitment rules. Use when recruiting participants onto a study by name, by segment, or by a description of who you're looking for; the skill confirms before anything is sent. Requires the Great Question MCP integration to be connected.
 owner: Great Question
-version: 0.2
-last_reviewed: 2026-06-10
-tested_against: MCP tools as of 2026-06-10
+version: 0.3
+last_reviewed: 2026-09-24
+tested_against: MCP tools as of 2026-09-24
 license: MIT
 ---
 
@@ -35,6 +35,14 @@ migrates to account config when that layer exists.
   <!-- Any segments the agent should always exclude from recruitment (e.g., a "do not recruit" segment, internal employees, etc.). List them here. -->
 - **Geographic, demographic, or attribute filters:** `{{baseline_attribute_filters}}`
   <!-- Any baseline filters your org always applies (e.g., "exclude anyone with consent_expired flag," "exclude candidates flagged as low engagement"). -->
+### Attribute trust
+- **Attributes safe to filter on:** `{{trusted_attributes}}`
+  <!-- For example: "role, seniority, company_size, industry, primary_tool. These are populated above 80% and have been through a cleaning pass." An attribute that is 30% populated produces a filter that quietly excludes most of the panel regardless of fit. -->
+- **Attributes to avoid filtering on:** `{{untrusted_attributes}}`
+  <!-- For example: "free-text notes, referrer, anything sourced from an 'Other - please specify' option. A count built on these is misleading." -->
+- **Healthy result size:** `{{healthy_result_size}}`
+  <!-- For example: "3 to 5 times the sessions you need to fill. For a 10-session study, 30 to 50 matching candidates before eligibility rules are applied." -->
+
 ### Batch sizing
 - **Default invitation batch size:** `{{default_batch_size}}`
   <!-- For example: 30. The number of candidates to invite at once when the target sample is reached through multiple invitations. Smaller batches give better quality and recovery; larger batches hit target faster. Most orgs land between 25 and 75. -->
@@ -79,6 +87,28 @@ Based on the researcher's framing:
 - **Description:** apply the description-resolution rule from **Your rules**. Usually: check whether an existing saved segment matches; if not, run a search using attribute filters that match the description.
 - **Hand-curated list:** look up each candidate by name, email, or ID. Surface anyone the agent can't find.
 At the end of step 2, the agent has a candidate pool. Don't shortlist or invite yet.
+
+Before reporting the pool, do four things the researcher cannot do by eye.
+
+**Split the request into conditions first.** "Enterprise admins in North America who've used the approvals flow in the last 90 days, not anyone from the Q3 study" is four conditions, not one audience. Most resolution errors are really splitting errors. Confirm the split.
+
+**Start from an existing segment where one covers most of the request.** Rebuilding an audience the team has already defined produces a pool that drifts from the team's own definition, and the drift is invisible. Say which segment you started from.
+
+**Never approximate a condition silently.** "Used X in the last 90 days" is two conditions — used X, and recently. An attribute recording *whether* cannot answer *when*. If the recency half is unexpressible, report it as unexpressible; do not map it to "has the attribute set at all" and present the result as the audience that was asked for. The honest answer is usually that recency belongs in the screener for this study, because the panel does not hold it.
+
+**Report the cost of each condition when the pool is below the healthy result size.** Remove one condition at a time and re-count:
+
+```
+All four conditions                     31
+  without North America                 88   (+57)
+  without the Q3 exclusion              47   (+16)
+  without the approvals condition      260  (+229)
+```
+
+That turns a disappointing number into a decision, and frequently shows the expensive condition is the one the researcher cared least about. Report the pool the researcher actually asked for first, then offer the relaxations separately — do not quietly drop a condition to make the number look healthy.
+
+Apply the **Your rules** attribute-trust lists. If a condition can only be expressed through an untrusted or sparsely populated attribute, give the count with the populated percentage attached rather than presenting it as clean.
+
 ### 3. Apply org recruitment rules
 For each candidate in the pool, apply the rules in **Your rules**:
 - Skip candidates within the cooldown period.
@@ -124,6 +154,17 @@ them at runtime. Edit this list when GQ changes a workflow constraint.
 - **The send tool sends to the study's configured screener message by default.** If the researcher wants a different message, the email-copy skill is the right surface to draft or revise it first. The send tool can take an optional message reference if the researcher has authored one specifically for this batch.
 - **If a step fails after candidates have been shortlisted, stop the workflow.** Don't retry sends silently. Summarize what was successfully shortlisted, whether anything was sent, and what state the study is in. Ask the researcher how to proceed.
 - **Re-invitations within a short window can damage panel goodwill.** The cooldown rule from **Your rules** is policy, not just convention. If the agent finds itself proposing to re-invite anyone who was invited recently, surface that prominently rather than treating it as a routine skip.
+- **A small pool is a finding, not a failure.** The instinct is to relax conditions until the number looks healthy. Report the number asked for, then the relaxations.
+- **Build the real boolean structure.** Great Question supports "and" / "or" in candidate filtering — this appears in the ServiceNow ROIS log as FR-04 with GQ's note confirming it is already supported. "Designers or researchers at enterprise companies" is `(role = designer OR role = researcher) AND company_size = enterprise`, not three filters run in sequence.
+- **Re-read the attribute schema every run.** Attributes get renamed and values get cleaned. A cached mapping is how a filter silently starts pointing at the wrong thing.
+- **If the diagnosis is dirty attribute data rather than a thin panel, hand off.** Five spellings of the same role makes a filter return a fifth of the people, and it looks like a small panel. That is the `panel-data-steward` skill's job, not a reason to relax the filter.
+- **Attribute names are case-sensitive, and custom attributes live under `attributes.extra`** on the candidate record (verified against the live MCP on 24 Sep 2026). The account tested stores role as `Role`. A condition written against `role` matches nothing and returns a pool of zero that looks like a thin panel. Read the attribute names off real records before mapping a condition.
+- **Check for duplicate attribute names before trusting a count.** The same account holds `favorite_color`, `favorite_colors` and `favorite_color_multiple` for one concept. A condition on any one of them misses the candidates recorded under the other two. The `panel-data-steward` skill's `keys` command lists these.
+- **Some attributes are lists.** Values such as `["Orange"]` are lists, not strings, and a condition has to test membership rather than equality.
+- **`list_candidates` pages at 20 per call** with `meta.count` and `meta.pages`, and `page` must be an integer. Report the pool size from `meta.count`, not from the length of the first page.
+- **The tool schemas are empty.** When an argument name is unknown, the server names it in its reply (`Missing required arguments: <name>`), and a call rejected that way has no effect.
+- **The screener participant-tab filter display has a known bug** (ServiceNow ROIS log BUG-03: data not displaying correctly, inaccurate participant counts). If a researcher's number came from that tab and yours disagrees, that is the likely cause. Pull the responses directly.
+
 ## External-system hooks
 <!--
 Reserved seam for forking customers to extend with their own integrations
@@ -156,5 +197,6 @@ The agent:
 11. Returns a summary: "Shortlisted 23 candidates (1 server-skipped for contactability). Invitations sent to 23. 25 candidates remain in the filtered pool. Link to participants page."
 Time elapsed: a couple of minutes plus whatever the agent waits for the researcher's review. The value is consistency: the same recruitment rules applied every time, the same record of what was filtered and why.
 ## Changelog
+- **0.3 (2026-09-24):** Step 2 now splits the request into conditions, prefers an existing segment, refuses to approximate an unexpressible condition, and reports the cost of each condition when the pool is short. Adds attribute-trust rules. Covers the guided-segmentation ask from the ServiceNow ROIS log (SK-03) inside the existing recruitment flow rather than as a separate skill.
 - **0.2 (2026-06-10):** Made send approval an explicit, mandatory, separate step from shortlist approval. Even when the researcher's original request is "shortlist and send," the agent requests two distinct approvals at two distinct moments. Ambiguous answers ("looks good," "go ahead") are treated as requests for clarification, not as approval. The Confirmation subsection of Your rules was promoted from a buried bullet to a top-level commitment.
 - **0.1 (2026-06-10):** Initial library template version. Covers the full recruitment workflow: discovery via segment / search / hand-curated list, org-rules filtering, oversampling, shortlist, send. Defers screener email authoring to the email-copy skill.
