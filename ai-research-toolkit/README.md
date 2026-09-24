@@ -1,6 +1,10 @@
 # AI Research Toolkit
 
-17 Claude skills that turn AI into your UX research assistant.
+18 Claude skills that turn AI into your UX research assistant.
+
+```bash
+npx skills add marketer-gq/ux-research-claude-skills
+```
 
 ## What's Inside
 
@@ -21,12 +25,15 @@ These process transcripts, notes, and findings you hand them. No account or inte
 | **survey-designer** | Designs research-quality surveys with validated questions, response options, and strategic rationale |
 | **jtbd-interview-guide** | Generates a JTBD moderation guide using the Bob Moesta timeline interview method |
 | **jtbd-analyzer** | Extracts Jobs-to-Be-Done insights from transcripts — four forces, switching triggers, struggling moments |
+| **synthetic-user-skill-public** | Builds reusable customer profiles from clusters of real interview evidence, every attribute cited to its session and every gap marked |
+
+> **On synthetic users.** These profiles are for piloting an instrument, generating hypotheses and stress-testing an artefact before you go to real people. They are not a substitute for participants and should not carry a decision on their own. Every attribute is cited to a real session and every gap is marked so you can see what the evidence does not cover.
 
 ### Great Question MCP skills
 
 These act directly inside your Great Question account — creating studies, recruiting participants, drafting study emails, and pulling findings. They're forkable templates: edit the `Your rules` section in each `SKILL.md` to match how your team works. Anything that writes to your account confirms with you before it sends, recruits, or changes something.
 
-> **Require the [Great Question MCP integration](https://greatquestion.co/features/mcp-integration).** These skills only work when the MCP is connected to your Claude environment.
+> **Require the [Great Question MCP integration](https://www.greatquestion.com/features/mcp-integration).** These skills only work when the MCP is connected to your Claude environment.
 
 | Skill | What It Does |
 |-------|-------------|
@@ -39,12 +46,26 @@ These act directly inside your Great Question account — creating studies, recr
 
 ## How to Install
 
+### Command line (recommended)
+
+```bash
+npx skills add marketer-gq/ux-research-claude-skills
+```
+
+Pick the skills you want from the list. For one skill:
+
+```bash
+npx skills add marketer-gq/ux-research-claude-skills --skill affinity-mapper
+```
+
+Add `--global` to install for every project rather than the current directory. This works in Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, Zed and any other agent that reads the [Agent Skills](https://agentskills.io) format.
+
 ### Claude Desktop
 1. Open **Settings → Capabilities → Skills**
 2. Upload the SKILL.md file from any skill folder
 3. Done — Claude will use the skill automatically when relevant
 
-### Claude Code
+### Claude Code (manual)
 1. Copy the skill folder into your project's `.claude/skills/` directory
 2. Claude reads it automatically when handling related tasks
 
@@ -52,7 +73,7 @@ These act directly inside your Great Question account — creating studies, recr
 1. Drop the skill folder into your skills directory
 2. Available immediately
 
-> For the **Great Question MCP skills**, also connect the [Great Question MCP integration](https://greatquestion.co/features/mcp-integration) in your Claude environment — the skills call it to do their work.
+> For the **Great Question MCP skills**, also connect the [Great Question MCP integration](https://www.greatquestion.com/features/mcp-integration) in your Claude environment — the skills call it to do their work.
 
 ## Recommended Workflow
 
@@ -66,7 +87,7 @@ These skills chain together across a full research project.
 
 **Run it in Great Question (requires the MCP):** panel-hygiene-audit → candidate-recruiter → interview-study-builder *or* unmoderated-test-builder → study-email-writer → stakeholder-readout-mcp
 
-You don't need all 17 on every project. Start with the one that targets your biggest bottleneck.
+You don't need all 18 on every project. Start with the one that targets your biggest bottleneck.
 
 ## Customization
 
@@ -76,4 +97,4 @@ Every skill is just a markdown file. Open it, edit the instructions, save. If yo
 
 These skills complement Great Question's built-in AI research features. If you're using Great Question, many of these capabilities are already native to the platform. These skills extend that functionality to data from external sources and into your broader AI workflow.
 
-Learn more at [greatquestion.co](https://greatquestion.co)
+Learn more at [greatquestion.com](https://www.greatquestion.com)
