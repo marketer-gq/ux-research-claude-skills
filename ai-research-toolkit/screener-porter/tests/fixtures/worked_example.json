@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "name": "Synthetic approvals screener",
+  "study_type": "interview",
+  "attribute_mapping_in_source": true,
+  "questions": [
+    {"id": "a1", "text": "What is your age?", "type": "single_choice",
+     "options": ["18-24", "25-34", "35-44", "45 or over"], "required": true,
+     "attribute": "age_band", "qualify_if": [], "disqualify_if": [], "open_ended": false},
+    {"id": "a2", "text": "Which of these best describes your role?", "type": "single_choice",
+     "options": ["Finance manager", "Approver", "Student", "Unemployed"], "required": true,
+     "attribute": "role", "qualify_if": ["Finance manager", "Approver"],
+     "disqualify_if": ["Student", "Unemployed"], "open_ended": false},
+    {"id": "a3", "text": "Don't you agree that the current approval flow is frustrating?",
+     "type": "single_choice", "options": ["Agree", "Neutral", "Disagree"], "required": true,
+     "attribute": null, "qualify_if": [], "disqualify_if": [], "open_ended": false},
+    {"id": "a4", "text": "Describe how you approve an expense today.", "type": "long_text",
+     "options": [], "required": true, "attribute": null,
+     "qualify_if": [], "disqualify_if": [], "open_ended": true},
+    {"id": "a5", "text": "What tools does your team use for approvals?", "type": "long_text",
+     "options": [], "required": true, "attribute": null,
+     "qualify_if": [], "disqualify_if": [], "open_ended": true},
+    {"id": "a6", "text": "How many approvals do you handle in a typical week?",
+     "type": "single_choice", "options": ["Fewer than 5", "5-20", "More than 20", "Other - please specify"],
+     "required": true, "attribute": null, "qualify_if": [], "disqualify_if": [], "open_ended": false}
+  ]
+}

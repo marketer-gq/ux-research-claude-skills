@@ -1,6 +1,7 @@
 ---
 name: survey-designer
-description: Design research-quality surveys for product teams. Use this skill whenever a PM, product designer, or researcher needs to create a survey — whether to validate a feature hypothesis, test a concept, measure NPS/CSAT, or follow up on user interviews at scale. Also triggers when someone says "write survey questions", "help me build a survey", "I need to validate this with a survey", "what questions should I ask", or any time survey-based research is needed. Produces clean, analysis-ready markdown surveys with validated questions, response options, and strategic rationale. Always use this skill rather than just winging survey questions — biased or poorly structured questions kill research quality.
+description: >-
+  Design research-quality surveys for product teams: validating a feature hypothesis, testing a concept, measuring NPS/CSAT, or following up interviews at scale. Use when someone says "write survey questions", "help me build a survey", "I need to validate this with a survey", or any time survey research is needed, rather than improvising questions. Produces an analysis-ready markdown survey with validated questions, response options and the rationale for each.
 ---
 
 # Survey Designer

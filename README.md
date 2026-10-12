@@ -1,6 +1,6 @@
 # Claude skills for UX research
 
-18 free Claude skills from [Great Question](https://www.greatquestion.com). We run research too, and we got tired of explaining the same method to Claude every time. So we wrote them down.
+26 free Claude skills from [Great Question](https://www.greatquestion.com). We run research too, and we got tired of explaining the same method to Claude every time. So we wrote them down.
 
 ## Install
 
@@ -8,7 +8,7 @@
 npx skills add marketer-gq/ux-research-claude-skills
 ```
 
-That fetches all 18 and lets you pick which ones you want. For a single skill:
+That fetches all 26 and lets you pick which ones you want. For a single skill:
 
 ```bash
 npx skills add marketer-gq/ux-research-claude-skills --skill affinity-mapper
@@ -52,6 +52,74 @@ No account or integration needed. Hand these transcripts, notes or findings.
 
 > On **synthetic-user-skill-public**: these profiles are for piloting an instrument, generating hypotheses and stress-testing an artefact before you go to real people. They are not a substitute for participants and should not carry a decision on their own. Every attribute is cited to a real session and every gap is marked so you can see what the evidence does not cover.
 
+### Checks your research
+
+These check work that already exists rather than producing it: themes, reports, tasks, screeners, questionnaires, sessions and panel data. Each ships a stdlib-only Python script and runs on files you supply, with no account needed.
+
+| Skill | What it does |
+|---|---|
+| [theme-quality-auditor](ai-research-toolkit/theme-quality-auditor) | Checks whether your synthesis themes are real findings or just topic labels, and asks a question to help you turn each label into a finding. |
+| [evidence-integrity-auditor](ai-research-toolkit/evidence-integrity-auditor) | Checks a research report against its transcripts for quotes that can't be found, findings that rest on one person, and numbers that mislead. |
+| [sample-size-planner](ai-research-toolkit/sample-size-planner) | Tells you how many participants your study needs, with the published source behind the number and a sentence you can paste into your plan. |
+| [task-scenario-linter](ai-research-toolkit/task-scenario-linter) | Checks your usability test tasks for wording that gives the answer away, such as naming the button, before you run the test. |
+| [moderator-scorecard](ai-research-toolkit/moderator-scorecard) | Shows you, from your own interview transcript, how much you talked, interrupted or led the participant, so you can get better at moderating. |
+| [instrument-scorer](ai-research-toolkit/instrument-scorer) | Scores standard usability questionnaires like SUS correctly, compares them to the benchmark, and checks your questions still match the standard wording. |
+| [screener-porter](ai-research-toolkit/screener-porter) | Checks a recruitment screener before launch and helps you copy it into another study or tool without losing which answers qualify people. Also runs through the Great Question MCP. |
+| [panel-data-steward](ai-research-toolkit/panel-data-steward) | Finds messy participant data, like one job title stored four different ways, and proposes fixes that a person approves before anything changes. Also runs through the Great Question MCP. |
+
+<details>
+<summary>What each check does, in plain terms</summary>
+
+**theme-quality-auditor**
+- **The problem:** People label a synthesis theme "Onboarding" or "Pricing". That's a topic, not a finding. It says what people talked about, not what you learned from them.
+- **You give it:** your list of themes from analysis, and your discussion guide if you have it.
+- **It tells you:** which themes are just topic labels, and for each one a question to help you turn it into a real finding, like "People give up on setup before they see any value". It never rewrites a theme for you.
+- **Use it:** before you share a synthesis or readout.
+
+**evidence-integrity-auditor**
+- **The problem:** A research report can contain quotes that were changed or can't be found, findings that rest on one person, or "40% of users" when only eight people took part.
+- **You give it:** the report and the interview transcripts.
+- **It tells you:** which quotes it can't find in the transcripts, which findings rest on too few people, which numbers are misleading, and whether each finding mentions anyone who disagreed. It doesn't accuse anyone of making things up. It flags things for a person to check.
+- **Use it:** before a report goes to stakeholders, especially if AI helped write it.
+
+**sample-size-planner**
+- **The problem:** "How many people do I need?" usually gets answered with "five", and no reason for it.
+- **You give it:** the kind of study you're running and how many user groups you're studying.
+- **It tells you:** a recommended number or range, the published source behind it, and a sentence you can paste into your research plan. It can also tell you whether new interviews have stopped turning up new themes.
+- **Use it:** when you're planning a study, or when a stakeholder asks "is that enough people?".
+
+**task-scenario-linter**
+- **The problem:** A usability task like "Click Reports to find last month's spend" gives the answer away by naming the button. You end up testing whether people can read, not whether they can find things.
+- **You give it:** your usability tasks and a list of the product's menu and button names.
+- **It tells you:** which tasks use the product's own words, give step-by-step instructions, contain words like "easy" or "simply", or have no clear point where the participant knows they're done.
+- **Use it:** before you run a usability test.
+
+**moderator-scorecard**
+- **The problem:** Interviewers rarely find out how much they talk, interrupt or lead the participant.
+- **You give it:** a transcript of an interview you ran.
+- **It tells you:** how much of the session you talked compared with the participant, your longest speeches, any interruptions, and questions that pushed toward an answer.
+- **Use it:** to review your own sessions and improve. It isn't for managers grading people.
+
+**instrument-scorer**
+- **The problem:** Standard usability questionnaires like SUS are easy to score wrongly, and if someone rewords a question the score can no longer be compared to the benchmark.
+- **You give it:** the questionnaire responses.
+- **It tells you:** the correct score, how it compares to the published benchmark, any responses that look inconsistent, and whether your questions still match the standard wording.
+- **Use it:** whenever you run SUS, SEQ, UMUX-Lite or NASA-TLX.
+
+**screener-porter**
+- **The problem:** Copying a recruitment screener between studies or tools by hand loses its logic: which answers qualify someone, and where the answers get saved.
+- **You give it:** a screener exported from any tool.
+- **It tells you:** whether the screener has problems before you launch it, such as questions that are easy to guess or sensitive questions with no consent, plus a step-by-step plan to copy it into the new study or tool without losing anything.
+- **Use it:** when you're reusing or moving a screener.
+
+**panel-data-steward**
+- **The problem:** Participant data gets messy. The same job title is stored as "Product Manager", "product manager", "PM" and "Product Mgr", so filtering on one misses most of the people and the panel looks smaller than it is.
+- **You give it:** an export of your participant panel.
+- **It tells you:** which fields are mostly empty, which are duplicates, and which values are different spellings of the same thing. It proposes fixes, and nothing changes until a person approves each one.
+- **Use it:** when your panel seems too small, or as a regular clean-up.
+
+</details>
+
 ### Works inside your Great Question account
 
 These act on your real data — creating studies, recruiting, drafting participant comms, pulling findings. Anything that writes to your account confirms with you first.
@@ -69,11 +137,13 @@ These act on your real data — creating studies, recruiting, drafting participa
 
 ## How they chain
 
-You don't need all 18 on a project. Start with the one that targets your biggest bottleneck.
+You don't need all 26 on a project. Start with the one that targets your biggest bottleneck.
 
 **Planning** — research-brief-writer → discussion-guide-builder (or jtbd-interview-guide) → screener-builder (or survey-designer)
 
 **Analysis** — transcript-cleaner → insight-tagger → affinity-mapper → research-synthesizer (or jtbd-analyzer)
+
+**Checking** — task-scenario-linter and screener-porter before fielding · moderator-scorecard after a session · theme-quality-auditor and evidence-integrity-auditor before a readout · sample-size-planner when planning
 
 **Communication** — stakeholder-readout-generator
 

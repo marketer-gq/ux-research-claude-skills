@@ -1,0 +1,10 @@
+[
+  {"interview": "P1", "codes": ["approval delays", "lost receipts", "export confusion"]},
+  {"interview": "P2", "codes": ["lost receipts", "mobile upload", "policy unclear"]},
+  {"interview": "P3", "codes": ["approval delays", "manager bottleneck"]},
+  {"interview": "P4", "codes": ["currency errors", "duplicate claims"]},
+  {"interview": "P5", "codes": ["audit anxiety"]},
+  {"interview": "P6", "codes": ["approval delays"]},
+  {"interview": "P7", "codes": ["lost receipts"]},
+  {"interview": "P8", "codes": ["export confusion"]}
+]

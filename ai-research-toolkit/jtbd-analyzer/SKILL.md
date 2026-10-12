@@ -1,7 +1,7 @@
 ---
 name: jtbd-analyzer
 description: >-
-  Analyze user research through the Jobs-to-Be-Done (JTBD) lens using the Bob Moesta / Competing Against Luck framework. Use this skill whenever a PM, product designer, or researcher wants to extract JTBD insights from transcripts, interview notes, or raw observations. Triggers on "analyze this through JTBD", "what's the job to be done", "extract jobs from this transcript", "JTBD analysis", "what are users hiring this for", "four forces analysis", "push pull analysis", "struggling moments", "switching triggers". Also use proactively when someone shares interview transcripts and wants to understand why users switched, what progress they're trying to make, or what's driving adoption. This skill does the analytical heavy lifting that normally takes a researcher hours of manual coding.
+  Analyze user research through the Jobs-to-Be-Done lens (Bob Moesta / Competing Against Luck). Use when someone wants JTBD insights from transcripts, interview notes or observations, or asks "what's the job to be done", "extract jobs from this transcript", "four forces", "push/pull analysis", "struggling moments" or "switching triggers". Also use when transcripts are shared to understand why users switched, the progress they want, or what drives adoption.
 ---
 
 # JTBD Analyzer

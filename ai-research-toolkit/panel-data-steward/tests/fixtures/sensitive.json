@@ -1,0 +1,22 @@
+[
+ {
+  "id": "s0",
+  "ethnicity": "White British",
+  "Household Income": "50-75k"
+ },
+ {
+  "id": "s1",
+  "ethnicity": "white british",
+  "Household Income": "50-75k"
+ },
+ {
+  "id": "s2",
+  "ethnicity": "White - British",
+  "Household Income": "75-100k"
+ },
+ {
+  "id": "s3",
+  "ethnicity": "Asian",
+  "Household Income": "75-100k"
+ }
+]

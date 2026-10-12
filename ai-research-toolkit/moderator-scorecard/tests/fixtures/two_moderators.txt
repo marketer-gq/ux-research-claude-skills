@@ -1,0 +1,4 @@
+[00:00:00] Alex: What does your morning look like?
+[00:00:05] Priya: Coffee, then email, then a stand-up with the team and a quick review of tickets.
+[00:00:12] Sam: How long does the stand-up take?
+[00:00:15] Priya: Fifteen minutes, sometimes twenty if something is on fire that day.

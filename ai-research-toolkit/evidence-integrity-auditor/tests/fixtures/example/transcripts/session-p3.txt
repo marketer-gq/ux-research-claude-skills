@@ -1,0 +1,9 @@
+Synthetic fixture. Not real participant data.
+
+Interviewer: Walk me through the last approval you submitted.
+
+P3: I filled in the form on Monday morning. When it times out halfway through the approval, I have to start the whole request again from the first screen. That happened twice that week.
+
+Interviewer: What do you do while you wait?
+
+P3: Honestly, I end up refreshing the approval page every few minutes just to see whether anything has moved. It is not a great use of my time.

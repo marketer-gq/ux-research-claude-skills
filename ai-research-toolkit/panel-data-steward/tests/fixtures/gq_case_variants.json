@@ -1,0 +1,82 @@
+{
+ "data": [
+  {
+   "id": "9001",
+   "type": "customer",
+   "attributes": {
+    "id": 9001,
+    "name": "Test Person 1",
+    "email": "p1@example.test",
+    "extra": {
+     "Role": "Product Manager",
+     "type": "Agency"
+    }
+   }
+  },
+  {
+   "id": "9002",
+   "type": "customer",
+   "attributes": {
+    "id": 9002,
+    "name": "Test Person 2",
+    "email": "p2@example.test",
+    "extra": {
+     "Role": "Product Manager",
+     "type": "Agency"
+    }
+   }
+  },
+  {
+   "id": "9003",
+   "type": "customer",
+   "attributes": {
+    "id": 9003,
+    "name": "Test Person 3",
+    "email": "p3@example.test",
+    "extra": {
+     "role": "product manager",
+     "type": "agency"
+    }
+   }
+  },
+  {
+   "id": "9004",
+   "type": "customer",
+   "attributes": {
+    "id": 9004,
+    "name": "Test Person 4",
+    "email": "p4@example.test",
+    "extra": {
+     "role": "PM",
+     "type": "agency "
+    }
+   }
+  },
+  {
+   "id": "9005",
+   "type": "customer",
+   "attributes": {
+    "id": 9005,
+    "name": "Test Person 5",
+    "email": "p5@example.test",
+    "extra": {
+     "Role": "PM",
+     "role": "Product Manager"
+    }
+   }
+  },
+  {
+   "id": "9006",
+   "type": "customer",
+   "attributes": {
+    "id": 9006,
+    "name": "Test Person 6",
+    "email": "p6@example.test",
+    "extra": {
+     "Role": "UX Researcher",
+     "type": "In-house"
+    }
+   }
+  }
+ ]
+}

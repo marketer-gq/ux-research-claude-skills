@@ -1,6 +1,6 @@
 # AI Research Toolkit
 
-18 Claude skills that turn AI into your UX research assistant.
+26 Claude skills that turn AI into your UX research assistant.
 
 ```bash
 npx skills add marketer-gq/ux-research-claude-skills
@@ -28,6 +28,21 @@ These process transcripts, notes, and findings you hand them. No account or inte
 | **synthetic-user-skill-public** | Builds reusable customer profiles from clusters of real interview evidence, every attribute cited to its session and every gap marked |
 
 > **On synthetic users.** These profiles are for piloting an instrument, generating hypotheses and stress-testing an artefact before you go to real people. They are not a substitute for participants and should not carry a decision on their own. Every attribute is cited to a real session and every gap is marked so you can see what the evidence does not cover.
+
+### Research quality checks
+
+These check existing work rather than producing it. Each ships a stdlib-only Python script with tests (`python3 -m unittest discover` inside the skill folder). No account or integration required.
+
+| Skill | What It Does |
+|-------|-------------|
+| **theme-quality-auditor** | Checks whether your synthesis themes are real findings or just topic labels, and asks a question to help you turn each label into a finding. |
+| **evidence-integrity-auditor** | Checks a research report against its transcripts for quotes that can't be found, findings that rest on one person, and numbers that mislead. |
+| **sample-size-planner** | Tells you how many participants your study needs, with the published source behind the number and a sentence you can paste into your plan. |
+| **task-scenario-linter** | Checks your usability test tasks for wording that gives the answer away, such as naming the button, before you run the test. |
+| **moderator-scorecard** | Shows you, from your own interview transcript, how much you talked, interrupted or led the participant, so you can get better at moderating. |
+| **instrument-scorer** | Scores standard usability questionnaires like SUS correctly, compares them to the benchmark, and checks your questions still match the standard wording. |
+| **screener-porter** | Checks a recruitment screener before launch and helps you copy it into another study or tool without losing which answers qualify people. Also runs through the Great Question MCP. |
+| **panel-data-steward** | Finds messy participant data, like one job title stored four different ways, and proposes fixes that a person approves before anything changes. Also runs through the Great Question MCP. |
 
 ### Great Question MCP skills
 
@@ -83,11 +98,13 @@ These skills chain together across a full research project.
 
 **Analysis:** transcript-cleaner → insight-tagger → affinity-mapper → research-synthesizer (or jtbd-analyzer)
 
+**Checking:** task-scenario-linter and screener-porter before fielding · moderator-scorecard after a session · theme-quality-auditor and evidence-integrity-auditor before a readout · sample-size-planner when planning
+
 **Communication:** stakeholder-readout-generator
 
 **Run it in Great Question (requires the MCP):** panel-hygiene-audit → candidate-recruiter → interview-study-builder *or* unmoderated-test-builder → study-email-writer → stakeholder-readout-mcp
 
-You don't need all 18 on every project. Start with the one that targets your biggest bottleneck.
+You don't need all 26 on every project. Start with the one that targets your biggest bottleneck.
 
 ## Customization
 

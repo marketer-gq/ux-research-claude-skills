@@ -1,7 +1,7 @@
 ---
 name: jtbd-interview-guide
 description: >-
-  Generate a complete JTBD (Jobs-to-Be-Done) interview moderation guide for product research. Use this skill whenever a PM, product designer, or researcher needs to plan and run a JTBD-style user interview using the Bob Moesta timeline interview method. Triggers on "create interview guide", "write interview questions for JTBD", "help me run a JTBD interview", "what should I ask in a user interview", "interview guide for a product or feature", "moderation guide", "discussion guide", "research script". Also use proactively when someone is preparing for upcoming user interviews and wants a structured approach. Outputs a complete moderation guide with timeline walkthrough, probing questions, and facilitation notes — the kind of guide a PM or designer can pick up and use in 30 minutes of prep.
+  Generate a complete JTBD (Jobs-to-Be-Done) interview moderation guide using Bob Moesta's timeline interview method. Use when a PM, designer or researcher is planning a JTBD or switch interview, or asks to "create an interview guide", "write JTBD interview questions", "moderation guide", "discussion guide" or "research script". Outputs a timeline walkthrough, probing questions and facilitation notes that are ready to run after 30 minutes of prep.
 ---
 
 # JTBD Interview Guide Generator
