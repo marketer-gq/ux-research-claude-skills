@@ -35,14 +35,14 @@ These check existing work rather than producing it. Each ships a stdlib-only Pyt
 
 | Skill | What It Does |
 |-------|-------------|
-| **theme-quality-auditor** | Checks whether your themes are themes or topic labels, then asks the question that gets each one to a claim. It never rewrites a theme |
-| **evidence-integrity-auditor** | Checks a report against its transcripts: quotes that can't be found, findings resting on one participant, percentages at small n, and findings that never say whether anyone disagreed |
-| **sample-size-planner** | Gives a sourced starting range for interviews and focus groups, checks saturation, and works out sample sizes and intervals for usability and survey studies |
-| **task-scenario-linter** | Flags usability tasks that use the product's own labels, give instructions, prime the participant or have no clear end point |
-| **moderator-scorecard** | Measures a session from its transcript (talk-time share, monologues, interruptions, leading questions) for your own self-review, not for performance evaluation |
-| **instrument-scorer** | Scores SUS, UMUX-Lite, SEQ and NASA-TLX correctly, flags possible inconsistent answers, and checks the wording is still the standard version |
-| **screener-porter** | Converts a screener between tools, checks it before launch, and plans the import, with attribute mappings kept. Also runs through the Great Question MCP |
-| **panel-data-steward** | Finds duplicate and sparsely filled panel attributes and merges variant spellings, proposing every change for approval first. Also runs through the Great Question MCP |
+| **theme-quality-auditor** | Checks whether your synthesis themes are real findings or just topic labels, and asks a question to help you turn each label into a finding. |
+| **evidence-integrity-auditor** | Checks a research report against its transcripts for quotes that can't be found, findings that rest on one person, and numbers that mislead. |
+| **sample-size-planner** | Tells you how many participants your study needs, with the published source behind the number and a sentence you can paste into your plan. |
+| **task-scenario-linter** | Checks your usability test tasks for wording that gives the answer away, such as naming the button, before you run the test. |
+| **moderator-scorecard** | Shows you, from your own interview transcript, how much you talked, interrupted or led the participant, so you can get better at moderating. |
+| **instrument-scorer** | Scores standard usability questionnaires like SUS correctly, compares them to the benchmark, and checks your questions still match the standard wording. |
+| **screener-porter** | Checks a recruitment screener before launch and helps you copy it into another study or tool without losing which answers qualify people. Also runs through the Great Question MCP. |
+| **panel-data-steward** | Finds messy participant data, like one job title stored four different ways, and proposes fixes that a person approves before anything changes. Also runs through the Great Question MCP. |
 
 ### Great Question MCP skills
 

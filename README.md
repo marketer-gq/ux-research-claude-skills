@@ -58,14 +58,67 @@ These check work that already exists rather than producing it: themes, reports, 
 
 | Skill | What it does |
 |---|---|
-| [theme-quality-auditor](ai-research-toolkit/theme-quality-auditor) | Checks whether your themes are themes or topic labels, then asks the question that gets each one to a claim. It never rewrites a theme |
-| [evidence-integrity-auditor](ai-research-toolkit/evidence-integrity-auditor) | Checks a report against its transcripts: quotes that can't be found, findings resting on one participant, percentages at small n, and findings that never say whether anyone disagreed |
-| [sample-size-planner](ai-research-toolkit/sample-size-planner) | Gives a sourced starting range for interviews and focus groups, checks saturation, and works out sample sizes and intervals for usability and survey studies |
-| [task-scenario-linter](ai-research-toolkit/task-scenario-linter) | Flags usability tasks that use the product's own labels, give instructions, prime the participant or have no clear end point |
-| [moderator-scorecard](ai-research-toolkit/moderator-scorecard) | Measures a session from its transcript (talk-time share, monologues, interruptions, leading questions) for your own self-review, not for performance evaluation |
-| [instrument-scorer](ai-research-toolkit/instrument-scorer) | Scores SUS, UMUX-Lite, SEQ and NASA-TLX correctly, flags possible inconsistent answers, and checks the wording is still the standard version |
-| [screener-porter](ai-research-toolkit/screener-porter) | Converts a screener between tools, checks it before launch, and plans the import, with attribute mappings kept. Also runs through the Great Question MCP |
-| [panel-data-steward](ai-research-toolkit/panel-data-steward) | Finds duplicate and sparsely filled panel attributes and merges variant spellings, proposing every change for approval first. Also runs through the Great Question MCP |
+| [theme-quality-auditor](ai-research-toolkit/theme-quality-auditor) | Checks whether your synthesis themes are real findings or just topic labels, and asks a question to help you turn each label into a finding. |
+| [evidence-integrity-auditor](ai-research-toolkit/evidence-integrity-auditor) | Checks a research report against its transcripts for quotes that can't be found, findings that rest on one person, and numbers that mislead. |
+| [sample-size-planner](ai-research-toolkit/sample-size-planner) | Tells you how many participants your study needs, with the published source behind the number and a sentence you can paste into your plan. |
+| [task-scenario-linter](ai-research-toolkit/task-scenario-linter) | Checks your usability test tasks for wording that gives the answer away, such as naming the button, before you run the test. |
+| [moderator-scorecard](ai-research-toolkit/moderator-scorecard) | Shows you, from your own interview transcript, how much you talked, interrupted or led the participant, so you can get better at moderating. |
+| [instrument-scorer](ai-research-toolkit/instrument-scorer) | Scores standard usability questionnaires like SUS correctly, compares them to the benchmark, and checks your questions still match the standard wording. |
+| [screener-porter](ai-research-toolkit/screener-porter) | Checks a recruitment screener before launch and helps you copy it into another study or tool without losing which answers qualify people. Also runs through the Great Question MCP. |
+| [panel-data-steward](ai-research-toolkit/panel-data-steward) | Finds messy participant data, like one job title stored four different ways, and proposes fixes that a person approves before anything changes. Also runs through the Great Question MCP. |
+
+<details>
+<summary>What each check does, in plain terms</summary>
+
+**theme-quality-auditor**
+- **The problem:** People label a synthesis theme "Onboarding" or "Pricing". That's a topic, not a finding. It says what people talked about, not what you learned from them.
+- **You give it:** your list of themes from analysis, and your discussion guide if you have it.
+- **It tells you:** which themes are just topic labels, and for each one a question to help you turn it into a real finding, like "People give up on setup before they see any value". It never rewrites a theme for you.
+- **Use it:** before you share a synthesis or readout.
+
+**evidence-integrity-auditor**
+- **The problem:** A research report can contain quotes that were changed or can't be found, findings that rest on one person, or "40% of users" when only eight people took part.
+- **You give it:** the report and the interview transcripts.
+- **It tells you:** which quotes it can't find in the transcripts, which findings rest on too few people, which numbers are misleading, and whether each finding mentions anyone who disagreed. It doesn't accuse anyone of making things up. It flags things for a person to check.
+- **Use it:** before a report goes to stakeholders, especially if AI helped write it.
+
+**sample-size-planner**
+- **The problem:** "How many people do I need?" usually gets answered with "five", and no reason for it.
+- **You give it:** the kind of study you're running and how many user groups you're studying.
+- **It tells you:** a recommended number or range, the published source behind it, and a sentence you can paste into your research plan. It can also tell you whether new interviews have stopped turning up new themes.
+- **Use it:** when you're planning a study, or when a stakeholder asks "is that enough people?".
+
+**task-scenario-linter**
+- **The problem:** A usability task like "Click Reports to find last month's spend" gives the answer away by naming the button. You end up testing whether people can read, not whether they can find things.
+- **You give it:** your usability tasks and a list of the product's menu and button names.
+- **It tells you:** which tasks use the product's own words, give step-by-step instructions, contain words like "easy" or "simply", or have no clear point where the participant knows they're done.
+- **Use it:** before you run a usability test.
+
+**moderator-scorecard**
+- **The problem:** Interviewers rarely find out how much they talk, interrupt or lead the participant.
+- **You give it:** a transcript of an interview you ran.
+- **It tells you:** how much of the session you talked compared with the participant, your longest speeches, any interruptions, and questions that pushed toward an answer.
+- **Use it:** to review your own sessions and improve. It isn't for managers grading people.
+
+**instrument-scorer**
+- **The problem:** Standard usability questionnaires like SUS are easy to score wrongly, and if someone rewords a question the score can no longer be compared to the benchmark.
+- **You give it:** the questionnaire responses.
+- **It tells you:** the correct score, how it compares to the published benchmark, any responses that look inconsistent, and whether your questions still match the standard wording.
+- **Use it:** whenever you run SUS, SEQ, UMUX-Lite or NASA-TLX.
+
+**screener-porter**
+- **The problem:** Copying a recruitment screener between studies or tools by hand loses its logic: which answers qualify someone, and where the answers get saved.
+- **You give it:** a screener exported from any tool.
+- **It tells you:** whether the screener has problems before you launch it, such as questions that are easy to guess or sensitive questions with no consent, plus a step-by-step plan to copy it into the new study or tool without losing anything.
+- **Use it:** when you're reusing or moving a screener.
+
+**panel-data-steward**
+- **The problem:** Participant data gets messy. The same job title is stored as "Product Manager", "product manager", "PM" and "Product Mgr", so filtering on one misses most of the people and the panel looks smaller than it is.
+- **You give it:** an export of your participant panel.
+- **It tells you:** which fields are mostly empty, which are duplicates, and which values are different spellings of the same thing. It proposes fixes, and nothing changes until a person approves each one.
+- **Use it:** when your panel seems too small, or as a regular clean-up.
+
+</details>
 
 ### Works inside your Great Question account
 
