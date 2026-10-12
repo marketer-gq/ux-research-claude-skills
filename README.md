@@ -1,6 +1,6 @@
 # Claude skills for UX research
 
-18 free Claude skills from [Great Question](https://www.greatquestion.com). We run research too, and we got tired of explaining the same method to Claude every time. So we wrote them down.
+26 free Claude skills from [Great Question](https://www.greatquestion.com). We run research too, and we got tired of explaining the same method to Claude every time. So we wrote them down.
 
 ## Install
 
@@ -8,7 +8,7 @@
 npx skills add marketer-gq/ux-research-claude-skills
 ```
 
-That fetches all 18 and lets you pick which ones you want. For a single skill:
+That fetches all 26 and lets you pick which ones you want. For a single skill:
 
 ```bash
 npx skills add marketer-gq/ux-research-claude-skills --skill affinity-mapper
@@ -52,6 +52,21 @@ No account or integration needed. Hand these transcripts, notes or findings.
 
 > On **synthetic-user-skill-public**: these profiles are for piloting an instrument, generating hypotheses and stress-testing an artefact before you go to real people. They are not a substitute for participants and should not carry a decision on their own. Every attribute is cited to a real session and every gap is marked so you can see what the evidence does not cover.
 
+### Checks your research
+
+These check work that already exists rather than producing it: themes, reports, tasks, screeners, questionnaires, sessions and panel data. Each ships a stdlib-only Python script and runs on files you supply, with no account needed.
+
+| Skill | What it does |
+|---|---|
+| [theme-quality-auditor](ai-research-toolkit/theme-quality-auditor) | Checks whether your themes are themes or topic labels, then asks the question that gets each one to a claim. It never rewrites a theme |
+| [evidence-integrity-auditor](ai-research-toolkit/evidence-integrity-auditor) | Checks a report against its transcripts: quotes that can't be found, findings resting on one participant, percentages at small n, and findings that never say whether anyone disagreed |
+| [sample-size-planner](ai-research-toolkit/sample-size-planner) | Gives a sourced starting range for interviews and focus groups, checks saturation, and works out sample sizes and intervals for usability and survey studies |
+| [task-scenario-linter](ai-research-toolkit/task-scenario-linter) | Flags usability tasks that use the product's own labels, give instructions, prime the participant or have no clear end point |
+| [moderator-scorecard](ai-research-toolkit/moderator-scorecard) | Measures a session from its transcript (talk-time share, monologues, interruptions, leading questions) for your own self-review, not for performance evaluation |
+| [instrument-scorer](ai-research-toolkit/instrument-scorer) | Scores SUS, UMUX-Lite, SEQ and NASA-TLX correctly, flags possible inconsistent answers, and checks the wording is still the standard version |
+| [screener-porter](ai-research-toolkit/screener-porter) | Converts a screener between tools, checks it before launch, and plans the import, with attribute mappings kept. Also runs through the Great Question MCP |
+| [panel-data-steward](ai-research-toolkit/panel-data-steward) | Finds duplicate and sparsely filled panel attributes and merges variant spellings, proposing every change for approval first. Also runs through the Great Question MCP |
+
 ### Works inside your Great Question account
 
 These act on your real data — creating studies, recruiting, drafting participant comms, pulling findings. Anything that writes to your account confirms with you first.
@@ -69,11 +84,13 @@ These act on your real data — creating studies, recruiting, drafting participa
 
 ## How they chain
 
-You don't need all 18 on a project. Start with the one that targets your biggest bottleneck.
+You don't need all 26 on a project. Start with the one that targets your biggest bottleneck.
 
 **Planning** — research-brief-writer → discussion-guide-builder (or jtbd-interview-guide) → screener-builder (or survey-designer)
 
 **Analysis** — transcript-cleaner → insight-tagger → affinity-mapper → research-synthesizer (or jtbd-analyzer)
+
+**Checking** — task-scenario-linter and screener-porter before fielding · moderator-scorecard after a session · theme-quality-auditor and evidence-integrity-auditor before a readout · sample-size-planner when planning
 
 **Communication** — stakeholder-readout-generator
 

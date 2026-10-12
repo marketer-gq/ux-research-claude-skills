@@ -1,0 +1,242 @@
+[
+ {
+  "id": "c000",
+  "employment": "Employed",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Austria",
+  "origin": "Austria",
+  "role": "Product Manager"
+ },
+ {
+  "id": "c001",
+  "employment": "Unemployed",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Australia",
+  "origin": "Australia",
+  "role": "product manager"
+ },
+ {
+  "id": "c002",
+  "employment": "Full-time",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Niger",
+  "origin": "Niger",
+  "role": "PM"
+ },
+ {
+  "id": "c003",
+  "employment": "Part-time",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Nigeria",
+  "origin": "Nigeria",
+  "role": "ResearchOps"
+ },
+ {
+  "id": "c004",
+  "employment": "Active",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Ireland",
+  "origin": "Ireland",
+  "role": "Research Operations"
+ },
+ {
+  "id": "c005",
+  "employment": "Inactive",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Iceland",
+  "origin": "Iceland",
+  "role": "Product Manager"
+ },
+ {
+  "id": "c006",
+  "employment": "Employed",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "UK",
+  "origin": "Austria",
+  "role": "product manager"
+ },
+ {
+  "id": "c007",
+  "employment": "Unemployed",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "United Kingdom",
+  "origin": "Australia",
+  "role": "PM"
+ },
+ {
+  "id": "c008",
+  "employment": "Full-time",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Austria",
+  "origin": "Niger",
+  "role": "ResearchOps"
+ },
+ {
+  "id": "c009",
+  "employment": "Part-time",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Australia",
+  "origin": "Nigeria",
+  "role": "Research Operations"
+ },
+ {
+  "id": "c010",
+  "employment": "Active",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Niger",
+  "origin": "Ireland",
+  "role": "Product Manager"
+ },
+ {
+  "id": "c011",
+  "employment": "Inactive",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Nigeria",
+  "origin": "Iceland",
+  "role": "product manager"
+ },
+ {
+  "id": "c012",
+  "employment": "Employed",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Ireland",
+  "origin": "Austria",
+  "role": "PM"
+ },
+ {
+  "id": "c013",
+  "employment": "Unemployed",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Iceland",
+  "origin": "Australia",
+  "role": "ResearchOps"
+ },
+ {
+  "id": "c014",
+  "employment": "Full-time",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "UK",
+  "origin": "Niger",
+  "role": "Research Operations"
+ },
+ {
+  "id": "c015",
+  "employment": "Part-time",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "United Kingdom",
+  "origin": "Nigeria",
+  "role": "Product Manager"
+ },
+ {
+  "id": "c016",
+  "employment": "Active",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Austria",
+  "origin": "Ireland",
+  "role": "product manager"
+ },
+ {
+  "id": "c017",
+  "employment": "Inactive",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Australia",
+  "origin": "Iceland",
+  "role": "PM"
+ },
+ {
+  "id": "c018",
+  "employment": "Employed",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Niger",
+  "origin": "Austria",
+  "role": "ResearchOps"
+ },
+ {
+  "id": "c019",
+  "employment": "Unemployed",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Nigeria",
+  "origin": "Australia",
+  "role": "Research Operations"
+ },
+ {
+  "id": "c020",
+  "employment": "Full-time",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "Ireland",
+  "origin": "Niger",
+  "role": "Product Manager"
+ },
+ {
+  "id": "c021",
+  "employment": "Part-time",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "Iceland",
+  "origin": "Nigeria",
+  "role": "product manager"
+ },
+ {
+  "id": "c022",
+  "employment": "Active",
+  "satisfaction": "Satisfied",
+  "skill": "C++ Developer",
+  "company_size": "100-500",
+  "country": "UK",
+  "origin": "Ireland",
+  "role": "PM"
+ },
+ {
+  "id": "c023",
+  "employment": "Inactive",
+  "satisfaction": "Dissatisfied",
+  "skill": "C# Developer",
+  "company_size": "1000-5000",
+  "country": "United Kingdom",
+  "origin": "Iceland",
+  "role": "ResearchOps"
+ }
+]

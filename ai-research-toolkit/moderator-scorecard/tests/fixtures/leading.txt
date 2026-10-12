@@ -1,0 +1,12 @@
+[00:00:00] Moderator: You found the setup easy, didn't you?
+[00:00:04] Participant: It was fine.
+[00:00:06] Moderator: Isn't it so much faster than the old tool?
+[00:00:09] Participant: A bit.
+[00:00:11] Moderator: How much did you love the new dashboard?
+[00:00:14] Participant: It is okay.
+[00:00:16] Moderator: Most people find the export confusing.
+[00:00:19] Participant: I did not.
+[00:00:21] Moderator: So you set it up on your own. Did I get that right?
+[00:00:24] Participant: Yes.
+[00:00:26] Moderator: Was that frustrating, or something else?
+[00:00:29] Participant: Mostly boring.

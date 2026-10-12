@@ -1,6 +1,7 @@
 ---
 name: synthetic-user-skill-public
-description: Build grounded synthetic users from your research repository — reusable customer profiles derived from clusters of real interview evidence. Every attribute cited to a real session, every gap flagged as a research opportunity. Optionally, an existing profile can then react to a specific artifact (PRD, design, concept, survey question). Use when the user asks to build synthetic users, synthetic personas, create profiles from the repo, generate reusable customer lenses, simulate a user, pressure-test a PRD/design/concept against customer evidence, or run an artifact past the repo before going to real humans. Triggers on phrases like "build synthetic users from the repo", "create profiles I can use to test artifacts", "give me synthetic users for X segment", "act as a synthetic user", "what would our customers say about this PRD", "pressure-test this design".
+description: >-
+  Build grounded synthetic users from your research repository: reusable customer profiles derived from real interview evidence, with every attribute cited to a session and every gap flagged. Optionally have a profile react to an artifact (PRD, design, concept, survey question). Use for "build synthetic users", "synthetic personas", "simulate a user", "what would our customers say about this PRD", or to pressure-test an artifact before going to real people.
 ---
 
 # Synthetic user

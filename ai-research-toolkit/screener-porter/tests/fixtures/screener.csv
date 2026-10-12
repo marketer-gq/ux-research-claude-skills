@@ -1,0 +1,3 @@
+id,Question,Type,Options,Disqualifying answers,Attribute,Required
+c1,How often do you submit expense reports?,single_choice,Weekly|Monthly|Never,Never,expense_frequency,yes
+c2,Describe the last expense report you submitted.,long_text,,,,no

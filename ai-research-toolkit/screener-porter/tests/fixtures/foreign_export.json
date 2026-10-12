@@ -1,0 +1,18 @@
+{
+  "name": "Synthetic foreign export",
+  "questions": [
+    {"id": "f1", "title": "Do you manage a team budget?", "type": "boolean",
+     "attribute_key": "manages_budget", "qualify_if": [true]},
+    {"id": "f2", "title": "Which of these tools do you use at work?", "type": "checkbox",
+     "attribute_key": "tools_used",
+     "choices": [{"label": "Spreadsheet app"}, {"label": "Ledgerly", "disqualify": true},
+                 {"label": "None of these", "disqualify": true}]},
+    {"id": "f3", "title": "Rate these features", "type": "matrix",
+     "attribute_key": "feature_ratings", "choices": ["Search", "Export"]},
+    {"id": "f4", "title": "How many trips did you book last year?", "type": "radio",
+     "attribute_key": "screener-only",
+     "choices": [{"label": "None", "action": "disqualify"}, {"label": "1-5"},
+                 {"label": "6 or more", "action": "qualify"}],
+     "skip_logic": [{"if": "None", "goto": "end"}]}
+  ]
+}

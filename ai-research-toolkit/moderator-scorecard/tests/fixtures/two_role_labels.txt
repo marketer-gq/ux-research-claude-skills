@@ -1,0 +1,4 @@
+[00:00:00] Researcher: What does your morning look like?
+[00:00:05] Participant: Coffee, then email.
+[00:00:09] Moderator: How long does email take?
+[00:00:12] Participant: About an hour.

@@ -1,0 +1,12 @@
+{
+  "data": [
+    {"id": "101", "type": "screener_question",
+     "attributes": {"label": "Which of these best describes your role?",
+                    "question_type": "single_choice",
+                    "options": ["Product manager", "Designer", "Student"],
+                    "disqualifying_answers": ["Student"]}},
+    {"id": "102", "type": "screener_question",
+     "attributes": {"label": "Tell us about the last time you planned a team offsite.",
+                    "question_type": "long_text"}}
+  ]
+}

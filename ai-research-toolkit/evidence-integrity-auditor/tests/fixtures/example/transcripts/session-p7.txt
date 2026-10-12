@@ -1,0 +1,5 @@
+Synthetic fixture. Not real participant data.
+
+Interviewer: How do you keep track of where requests are?
+
+P7: So um the thing is, uh, we never really trusted the numbers on the shared dashboard because, you know, nobody owned them. I keep my own list instead.

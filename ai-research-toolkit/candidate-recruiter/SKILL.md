@@ -103,6 +103,7 @@ All four conditions                     31
   without North America                 88   (+57)
   without the Q3 exclusion              47   (+16)
   without the approvals condition      260  (+229)
+  without the enterprise-admin role      44   (+13)
 ```
 
 That turns a disappointing number into a decision, and frequently shows the expensive condition is the one the researcher cared least about. Report the pool the researcher actually asked for first, then offer the relaxations separately — do not quietly drop a condition to make the number look healthy.
@@ -155,15 +156,14 @@ them at runtime. Edit this list when GQ changes a workflow constraint.
 - **If a step fails after candidates have been shortlisted, stop the workflow.** Don't retry sends silently. Summarize what was successfully shortlisted, whether anything was sent, and what state the study is in. Ask the researcher how to proceed.
 - **Re-invitations within a short window can damage panel goodwill.** The cooldown rule from **Your rules** is policy, not just convention. If the agent finds itself proposing to re-invite anyone who was invited recently, surface that prominently rather than treating it as a routine skip.
 - **A small pool is a finding, not a failure.** The instinct is to relax conditions until the number looks healthy. Report the number asked for, then the relaxations.
-- **Build the real boolean structure.** Great Question supports "and" / "or" in candidate filtering — this appears in the ServiceNow ROIS log as FR-04 with GQ's note confirming it is already supported. "Designers or researchers at enterprise companies" is `(role = designer OR role = researcher) AND company_size = enterprise`, not three filters run in sequence.
+- **Build the real boolean structure.** "Designers or researchers at enterprise companies" is `(role = designer OR role = researcher) AND company_size = enterprise`, not three filters run in sequence. Whether the MCP can express that in one call is not verified: `search_candidates` takes `q`, `segment_id`, `study_id` and `updated_since`, with no attribute filter. Start from a saved segment that encodes the structure, or read the records and apply the conditions yourself, and say which you did.
 - **Re-read the attribute schema every run.** Attributes get renamed and values get cleaned. A cached mapping is how a filter silently starts pointing at the wrong thing.
 - **If the diagnosis is dirty attribute data rather than a thin panel, hand off.** Five spellings of the same role makes a filter return a fifth of the people, and it looks like a small panel. That is the `panel-data-steward` skill's job, not a reason to relax the filter.
 - **Attribute names are case-sensitive, and custom attributes live under `attributes.extra`** on the candidate record (verified against the live MCP on 24 Sep 2026). The account tested stores role as `Role`. A condition written against `role` matches nothing and returns a pool of zero that looks like a thin panel. Read the attribute names off real records before mapping a condition.
 - **Check for duplicate attribute names before trusting a count.** The same account holds `favorite_color`, `favorite_colors` and `favorite_color_multiple` for one concept. A condition on any one of them misses the candidates recorded under the other two. The `panel-data-steward` skill's `keys` command lists these.
 - **Some attributes are lists.** Values such as `["Orange"]` are lists, not strings, and a condition has to test membership rather than equality.
 - **`list_candidates` pages at 20 per call** with `meta.count` and `meta.pages`, and `page` must be an integer. Report the pool size from `meta.count`, not from the length of the first page.
-- **The tool schemas are empty.** When an argument name is unknown, the server names it in its reply (`Missing required arguments: <name>`), and a call rejected that way has no effect.
-- **The screener participant-tab filter display has a known bug** (ServiceNow ROIS log BUG-03: data not displaying correctly, inaccurate participant counts). If a researcher's number came from that tab and yours disagrees, that is the likely cause. Pull the responses directly.
+- **Read the tool schema before the first call.** On 24 Sep 2026 the tools advertised no parameters; by 12 Oct 2026 they did. If an argument name is still unknown, the server names it in its reply (`Missing required arguments: <name>`), and a call rejected that way has no effect.
 
 ## External-system hooks
 <!--
@@ -197,6 +197,6 @@ The agent:
 11. Returns a summary: "Shortlisted 23 candidates (1 server-skipped for contactability). Invitations sent to 23. 25 candidates remain in the filtered pool. Link to participants page."
 Time elapsed: a couple of minutes plus whatever the agent waits for the researcher's review. The value is consistency: the same recruitment rules applied every time, the same record of what was filtered and why.
 ## Changelog
-- **0.3 (2026-09-24):** Step 2 now splits the request into conditions, prefers an existing segment, refuses to approximate an unexpressible condition, and reports the cost of each condition when the pool is short. Adds attribute-trust rules. Covers the guided-segmentation ask from the ServiceNow ROIS log (SK-03) inside the existing recruitment flow rather than as a separate skill.
+- **0.3 (2026-09-24):** Step 2 now splits the request into conditions, prefers an existing segment, refuses to approximate an unexpressible condition, and reports the cost of each condition when the pool is short. Adds attribute-trust rules. Adds MCP facts verified on 24 Sep 2026: custom attribute names are case-sensitive and live under `attributes.extra`; duplicate attribute names for one concept; list-valued attributes need a membership test; report pool size from `meta.count`, not the first page.
 - **0.2 (2026-06-10):** Made send approval an explicit, mandatory, separate step from shortlist approval. Even when the researcher's original request is "shortlist and send," the agent requests two distinct approvals at two distinct moments. Ambiguous answers ("looks good," "go ahead") are treated as requests for clarification, not as approval. The Confirmation subsection of Your rules was promoted from a buried bullet to a top-level commitment.
 - **0.1 (2026-06-10):** Initial library template version. Covers the full recruitment workflow: discovery via segment / search / hand-curated list, org-rules filtering, oversampling, shortlist, send. Defers screener email authoring to the email-copy skill.

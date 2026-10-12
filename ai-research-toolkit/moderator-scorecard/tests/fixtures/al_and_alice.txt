@@ -1,0 +1,3 @@
+[00:00:00] Alice: Morning. Thanks for having me.
+[00:00:03] Al: What does your morning look like? How do you start?
+[00:00:08] Alice: Coffee, then email, then a stand-up with the team.

@@ -1,0 +1,4 @@
+[00:00:00] Sam: Shall we start?
+[00:00:02] Jo: Is the recording on?
+[00:00:04] Sam: Yes it is. Tell me about your role.
+[00:00:08] Jo: I run the support team.
